@@ -1,43 +1,28 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import diceLogo from '/dice.svg'
 import './App.scss'
 
-function thing () {
-  return(
-    <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src={viteLogo} className="logo" alt="Vite logo" />
-    </a>
-    <a href="https://react.dev" target="_blank">
-      <img src={reactLogo} className="logo react" alt="React logo" />
-    </a>
-    <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-        <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-  </div>
-
-  )
-}
 
 
 function App() {
   const [betMin, setBetMin] = useState(5);
-  const [lockInput, setLockInput] = useState(false);
 
-  function raw (value,num,dom) {
-    return 'Bet of '+value+' pays: '+ (value * num) / dom;
+  function updateBetMin(num) {
+    const newNumber = betMin + num;
+    if (newNumber<0){
+      return setBetMin(0);
+    }
+    setBetMin(newNumber);
+    
   }
+
+
 
   function getPayout(oddsNumerator, oddsDenominator){
     function betPays(bet){
       return (<>
-        <strong>{bet}</strong>
-        <br/>
-        {'pays: '+ (bet * oddsNumerator) / oddsDenominator}
+        <strong>{bet}</strong><br />
+        <span>{' pays: '+ (bet * oddsNumerator) / oddsDenominator}</span>
       </>
       )
     }
@@ -65,20 +50,26 @@ function App() {
 
   return (
     <>
-
-      <h1>Craps Calculator</h1>
-      <div className="card">
-        <button onClick={() => setBetMin((betMin) => betMin - 5)}>
+      <div class="page-title">
+        <img src={diceLogo} className="logo" alt="Dice logo" />
+        <h1>Craps Calculator</h1>
+        <img src={diceLogo} className="logo" alt="Dice logo" />
+      </div>
+      <div className="table-min">
+        <button onClick={() => updateBetMin(-5)}>
           -5  
         </button>
         
-        <h2>{betMin}</h2>
+        <div>
+          <h2>{betMin}</h2><br />
+          <em>Miniumn Bet</em>
+        </div>
         
-        <button onClick={() => setBetMin((betMin) => betMin + 5)}>
+        <button onClick={() => updateBetMin(5)}>
           +5
         </button>
-
       </div>
+      
  
       <br />
       <div className="board">
@@ -96,8 +87,7 @@ function App() {
           <tr>
             <td>
               <strong>Pass Line Odds</strong>
-              <p>Once a point is established you can bet on the Pass Line Odds</p>
-
+              <p>Bet that the established point will be rolled before a seven</p>
             </td>
             <td>{getPayout(2,1)}</td>
             <td>{getPayout(3,2)}</td>
@@ -106,11 +96,22 @@ function App() {
             <td>{getPayout(3,2)}</td>
             <td>{getPayout(2,1)}</td>
           </tr>
+          <tr id="dontPass">
+            <td>
+              <strong>Don't Pass Odds</strong>
+              <p>Bet that a seven will be rolled before the established point</p>
+            </td>
+            <td>{getPayout(1,2)}</td>
+            <td>{getPayout(2,3)}</td>
+            <td>{getPayout(5,6)}</td>
+            <td>{getPayout(5,6)}</td>
+            <td>{getPayout(2,3)}</td>
+            <td>{getPayout(1,2)}</td>
+          </tr>          
           <tr>
             <td>
               <strong>Place Bets</strong>
-              <br />
-              <p>Bet # will be rolled before seven after a point is established.</p>
+              <p>Bet # will be rolled before seven after a point is established</p>
             </td>
             <td>{getPayout(9,5)}</td>
             <td>{getPayout(7,5)}</td>
@@ -119,6 +120,7 @@ function App() {
             <td>{getPayout(7,5)}</td>
             <td>{getPayout(9,5)}</td>
           </tr>
+
           </tbody>
         </table>
 
