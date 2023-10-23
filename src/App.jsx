@@ -62,7 +62,7 @@ function App() {
         
         <div>
           <h2>{betMin}</h2><br />
-          <em>Miniumn Bet</em>
+          <em>Minimum Bet</em>
         </div>
         
         <button onClick={() => updateBetMin(5)}>
@@ -91,8 +91,8 @@ function App() {
             </td>
             <td>{getPayout(2,1)}</td>
             <td>{getPayout(3,2)}</td>
-            <td>{getPayout(5,6)}</td>
-            <td>{getPayout(5,6)}</td>
+            <td>{getPayout(6,5)}</td>
+            <td>{getPayout(6,5)}</td>
             <td>{getPayout(3,2)}</td>
             <td>{getPayout(2,1)}</td>
           </tr>
