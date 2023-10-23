@@ -104,19 +104,18 @@
 
 .showInfo,
 .circle {
-  width:40px;
-  height:40px;
-  
   align-self: center;
   background:transparent;
   padding: 0;
   border-radius: 50%;
   cursor:pointer;
   display:inline-block;
-  margin:10px 20px;
   
 }
 .showInfo {
+  width:2rem;
+  height:2rem;
+  line-height: 1;  
   position: absolute;
   left: 1rem;
   top: 1rem;
@@ -125,23 +124,32 @@
   border: 4px solid white;
   padding: 0;
   border-radius: 50%;
+  transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  &:hover{
+    transform:scale(1.1);
+    color:white;
+  }
   &:after{
     width:24px;
     height:4px;
-    // background-color:$red;
-    content:"?";
+    content:" ";
     left:50%;
     top:50%;
     margin-left:-12px;
     margin-top:-2px;
-    position:absolute;}
+    position:absolute;
+  }
 }
 
 $red:#E91E63;
 .circle{
+  width:40px;
+  height:40px;
+  
   border: 4px solid $red;
   position:relative;
   
+  margin:10px 20px; 
   &:after{
     width:24px;
     height:4px;
@@ -194,34 +202,6 @@ $red:#E91E63;
     transform:scale(1.1);
   }
 }
-
-// .close {
-//   text-align: center;
-//   // position: absolute;
-//   // right: 32px;
-//   // top: 32px;
-//   width: 32px;
-//   height: 32px;
-//   opacity: 0.3;
-  
-// }
-// .close:hover {
-//   opacity: 1;
-// }
-// .close:before, .close:after {
-//   position: absolute;
-//   left: 15px;
-//   content: ' ';
-//   height: 33px;
-//   width: 2px;
-//   background-color: #333;
-// }
-// .close:before {
-//   transform: rotate(45deg);
-// }
-// .close:after {
-//   transform: rotate(-45deg);
-// }
 
 
 @media screen and (max-width: 1200px) {

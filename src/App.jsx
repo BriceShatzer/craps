@@ -6,7 +6,7 @@ import './App.scss'
 
 function App() {
   const [betMin, setBetMin] = useState(5);
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   function updateBetMin(num) {
     const newNumber = betMin + num;
@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      <a href="#" onClick={()=>setShowInfo(true)} className="showInfo"></a>
+      <a href="#" alt="What is this?" onClick={()=>setShowInfo(true)} className="showInfo">?</a>
       <div className="page-title">
         <img src={diceLogo} className="logo" alt="Dice logo" />
         <h1>Craps Calculator</h1>
