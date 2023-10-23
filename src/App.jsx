@@ -6,6 +6,7 @@ import './App.scss'
 
 function App() {
   const [betMin, setBetMin] = useState(5);
+  const [showInfo, setShowInfo] = useState(true);
 
   function updateBetMin(num) {
     const newNumber = betMin + num;
@@ -50,7 +51,8 @@ function App() {
 
   return (
     <>
-      <div class="page-title">
+      <a href="#" onClick={()=>setShowInfo(true)} className="showInfo"></a>
+      <div className="page-title">
         <img src={diceLogo} className="logo" alt="Dice logo" />
         <h1>Craps Calculator</h1>
         <img src={diceLogo} className="logo" alt="Dice logo" />
@@ -123,8 +125,23 @@ function App() {
 
           </tbody>
         </table>
-
       </div>
+      <div id="info" className={showInfo?'show':''}>
+       <p> Determine the ideal bet amount to receive a whole number payout that aligns with the table's minimum bet requirement</p>
+       <p>For instance, a $10 <a href="https://wizardofodds.com/games/craps/basics/#place" rel="noreferrer">Place Bet</a> on the *six* pays $11.67. The casino doesn't deal with change, so you would only receive $11. </p>
+       <p>By utilizing this calculator, you can see that with a minimum bet of $10, you should wager $12 to ensure you receive a complete, even-dollar payout of $14.</p>
+       <button 
+        className="circle" 
+        data-animation="simpleRotate" 
+        data-remove="200" 
+        onClick={(e)=>{
+          setShowInfo(false);
+        }}
+      />
+      </div>
+
+
+
     </>
   )
 }
